@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <h1>User Profile</h1>
-    <p>Name: {{ user.name }}</p>
-    <p>Lastname: {{ user.lastname }}</p>
-    <p>Email: {{ user.email }}</p>
-    <!-- Add more user details here -->
+    <div class="d-flex p-5">
+        <div class="container">
+        <h1>User Profile</h1>
+        <p>Username: {{ user.username }}</p>
+        <p>Name: {{ user.first_name }}</p>
+        <p>Lastname: {{ user.last_name }}</p>
+        <p>Email: {{ user.email }}</p>
+
+
+    </div>
+    <div class="container">
+        <h2>User Reviews</h2>
+        {% if establishment_reviews %}
+            <ul class="list-group w-50">
+                {% for establishment_name, reviews in establishment_reviews.items %}
+                    <li class="list-group-item">{{ establishment_name }}</li>
+                    <ul class="list-group">
+                        {% for review in reviews %}
+                            <li class="list-group-item">{{ review.rating }} - {{ review.review_text }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No reviews found.</p>
+        {% endif %}
+    </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
 </body>
 </html>

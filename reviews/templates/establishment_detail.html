@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ establishment.name }}</title>
+</head>
+<body>
+    <h1>{{ establishment.name }}</h1>
+    <p>Address: {{ establishment.address }}</p>
+    <p>Average Rating: {{ establishment.average_rating }}/5</p>
+
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>{{ review.user.name }} - {{ review.rating.rating_count }}/5 - {{ review.review_text }}</li>
+        {% empty %}
+            <li>No reviews yet.</li>
+        {% endfor %}
+    </ul>
+
+    <!-- Add a link to add a review -->
+    <a href="{% url 'add_review' establishment_id=establishment.id %}">Add a review</a>
+</body>
+</html>

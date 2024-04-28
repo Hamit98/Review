@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Establishment List</title>
+</head>
+<body>
+    <h1>Establishments</h1>
+    <form method="get">
+        <input type="text" name="search" placeholder="Search by establishment name">
+        <button type="submit">Search</button>
+    </form>
+    <form method="get">
+        <select name="sort_by">
+            <option value="">Sort by</option>
+            <option value="rating">Rating</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+    <ul>
+        {% for establishment in establishments %}
+            <li>
+                <a href="{% url 'establishment_detail' establishment_id=establishment.id %}">
+                    {{ establishment.name }} - {{ establishment.average_rating }}/5
+                </a>
+            </li>
+        {% empty %}
+            <li>No establishments found.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
